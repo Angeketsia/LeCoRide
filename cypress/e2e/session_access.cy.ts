@@ -32,7 +32,7 @@ describe('Authentication Flow', () => {
     });
   });
 
-  
+
   describe('Access protected route with token refresh', () => {
 
     beforeEach(() => {
@@ -105,14 +105,16 @@ describe('Authentication Flow', () => {
     });
 
   it('should clear access token on logout', () => {
-    cy.get('button#logout').should('be.visible').click();
+  cy.get('button#logout').should('be.visible').click();
 
-    // Attendre la requête logout
-    cy.wait('@logout');
+  // Attendre la requête logout
+  cy.wait('@logout');
 
-    // Vérifier que le token est supprimé
-    cy.window().its('localStorage.app_access_token').should('be.null');
+  // Vérifier que le token est supprimé
+  cy.window().then(win => {
+    expect(win.localStorage.getItem('app_access_token')).to.be.null;
   });
+});
 
   });
 
