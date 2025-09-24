@@ -1,0 +1,82 @@
+{
+  "FORM": {
+    "TITLE": "Formulaire d'inscription",
+    "FIELDS": {
+      "LAST_NAME": "Nom",
+      "FIRST_NAME": "Prénom",
+      "CONTACT_PREFERENCE": "Choix de la méthode d'inscription",
+      "EMAIL": "Email",
+      "PHONE": "Téléphone",
+      "PASSWORD": "Mot de passe",
+      "CONFIRM_PASSWORD": "Confirmer le mot de passe",
+      "CONSENT": "J’accepte les Conditions d’utilisation et la Politique de confidentialité"
+    },
+    "BUTTON": {
+      "SUBMIT": "ENREGISTRER"
+    },
+    "LINK": {
+      "LOGIN_EMAIL": "Cet email est déjà utilisé, se connecter",
+      "LOGIN_PHONE": "Ce numéro est déjà utilisé, se connecter"
+    },
+    "ERRORS": {
+      "REQUIRED": "Ce champ est requis",
+      "INVALID_EMAIL": "Merci d’entrer une adresse mail valide",
+      "INVALID_PHONE": "Numéro invalide",
+      "PASSWORD_MISMATCH": "Les mots de passe ne correspondent pas",
+      "PASSWORD_MIN_LENGTH": "Votre mot de passe doit contenir au moins 8 caractères",
+      "PASSWORD_UPPER": "Votre mot de passe doit contenir au moins 1 majuscule",
+      "PASSWORD_LOWER": "Votre mot de passe doit contenir au moins 1 minuscule",
+      "PASSWORD_NUMBER": "Votre mot de passe doit contenir au moins 1 chiffre",
+      "PASSWORD_SPECIAL": "Votre mot de passe doit contenir au moins 1 caractère spécial (@$!%*?&#)"
+    }
+
+  },
+  "REGISTER": {
+    "SUCCESS_EMAIL": "Inscription réussie ! Vérifiez votre boîte mail pour confirmer.",
+    "SUCCESS_PHONE": "Inscription réussie ! Vous serez renvoyé sur une page pour obtenir un code de vérification.",
+    "CLOSE": "Fermer",
+    "EMAIL_SEND_ERROR": "Erreur lors de l'envoi de l'email de vérification.",
+    "VALIDATION_ERROR": "Erreur de validation",
+    "UNKNOWN_ERROR": "Erreur inconnue"
+  },
+
+  "REGISTER_LINK": "S'inscrire",
+  "Sign In": "Se connecter",
+  "HOME": "Accueil",
+  "LANGUAGE": "Choix de la langue",
+  "fr": "Français",
+  "en": "Anglais",
+  "OTPVerif": "OTP",
+  "Email": "Email",
+  "EMAIL_VERIFY": {
+    "VERIFYING": "Vérification en cours...",
+    "SUCCESS": "Email vérifié avec succès. Vous pouvez maintenant vous connecter.",
+    "EXPIRED": "Lien expiré. Cliquez ci-dessous pour renvoyer.",
+    "INVALID": "Lien invalide.",
+    "NETWORK_ERROR": "Erreur réseau",
+    "RESENDING": "Renvoi en cours...",
+    "RESEND_SUCCESS": "Email renvoyé ! Vérifiez votre boîte de réception.",
+    "RESEND_ERROR": "Erreur lors du renvoi. Veuillez réessayer.",
+    "CAN_RESEND": "Vous pouvez renvoyer un nouvel email.",
+    "RESEND_LINK": "Renvoyer le lien"
+  },
+  "OTP": {
+    "GET_CODE": "Obtenir le code",
+    "RESENDD_CODE": "Renvoyer le code",
+    "SEND_CODE": "Envoi du code en cours...",
+    "RESEND_CODE": "Renvoi du code en cours...",
+    "ENTER_CODE": "Entrez le code reçu.",
+    "SEND_ERROR": "Erreur lors de l’envoi du code. Veuillez réessayer.",
+    "BLOCKED": "Trop de tentatives. Réessayez dans 15 minutes.",
+    "INCORRECT_ATTEMPTS": "Code incorrect. Tentatives restantes : {{remaining}}",
+    "CORRECT": "Code correct. Redirection ...",
+    "CAN_RETRY": "Vous pouvez réessayer maintenant.",
+    "MAX_RESEND": "Vous avez atteint le maximum de renvoi. Patientez 15 minutes",
+    "RESEND_PROMPT": "Vous n'avez pas reçu de code ? cliquez sur 'Renvoyer le code'.",
+    "VERIFYING":"Vérification en cours..."
+  },
+  "COUNTDOWN_TRY_AGAIN": "Réessayez dans {{time}}s"
+}
+
+
+

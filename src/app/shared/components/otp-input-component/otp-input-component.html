@@ -1,0 +1,20 @@
+<div class="otp-container"
+  (paste)="onPaste($event)" [ngClass]="{ 'inputErr': error }"
+>
+  <mat-form-field *ngFor="let ctrl of digits.controls;
+  let i = index" class="otp-field">
+    <input matInput
+           #otpInput
+           maxlength="1"
+           [formControl]="$any(ctrl)"
+           (input)="onInput($event, i)"
+           (keydown)="onKeyDown($event, i)"
+           [ngClass]="{ 'input-error': error }"
+           [class.input-error]="error"
+          [attr.data-cy]="'otp-digit-' + i"
+           >
+  </mat-form-field>
+</div>
+
+<!-- ngModel : lie la valeur de l'input au typeScript -->
+<!-- ngClass: ajoute ou enleve une classe css -->

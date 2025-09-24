@@ -1,0 +1,127 @@
+<mat-card class="main-form" *ngIf="mainForm" [formGroup]="mainForm">
+  <mat-card-title>{{ 'FORM.TITLE' | translate | uppercase }}</mat-card-title>
+  <mat-divider></mat-divider>
+
+  <!-- Nom / Prénom -->
+  <div class="form-row">
+    <mat-form-field appearance="fill" class="form-lign1">
+      <mat-label>{{ 'FORM.FIELDS.LAST_NAME' | translate }} </mat-label>
+      <input matInput formControlName="last_name"
+             aria-label="{{ 'FORM.FIELDS.LAST_NAME' | translate }}"
+             aria-required="true"
+             [attr.aria-describedby]="'lastNameError'" data-cy="register-lastname">
+      <mat-error id="lastNameError" role="alert" *ngIf="mainForm.get('last_name')?.hasError('required')">
+        {{ getFormControlErrorText(mainForm.get('last_name')!) }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-lign">
+      <mat-label>{{ 'FORM.FIELDS.FIRST_NAME' | translate }} </mat-label>
+      <input matInput formControlName="first_name"
+             aria-label="{{ 'FORM.FIELDS.FIRST_NAME' | translate }}"
+             aria-required="true"
+             [attr.aria-describedby]="'firstNameError'" data-cy="register-firstname">
+      <mat-error id="firstNameError" role="alert" *ngIf="mainForm.get('first_name')?.hasError('required')">
+        {{ getFormControlErrorText(mainForm.get('first_name')!) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Contact preference -->
+  <mat-radio-group formControlName="contact_preference" data-cy="register-preference" aria-label="{{ 'FORM.FIELDS.CONTACT_PREFERENCE' | translate }}">
+      <span>{{ 'FORM.FIELDS.CONTACT_PREFERENCE' | translate }}</span>
+      <mat-radio-button value="email" data-cy="pref-email">{{ 'FORM.FIELDS.EMAIL' | translate }}</mat-radio-button>
+      <mat-radio-button value="phone" data-cy="pref-phone">{{ 'FORM.FIELDS.PHONE' | translate }}</mat-radio-button>
+    </mat-radio-group>
+
+  <!-- Email / Phone -->
+  <mat-form-field *ngIf="mainForm.get('contact_preference')?.value === 'email'" appearance="fill">
+    <mat-label>{{ 'FORM.FIELDS.EMAIL' | translate }} </mat-label>
+    <input matInput formControlName="email"
+           aria-label="{{ 'FORM.FIELDS.EMAIL' | translate }}"
+           aria-required="true"
+           [attr.aria-describedby]="'emailError'"
+           placeholder="{{ 'FORM.FIELDS.EMAIL' | translate }}" data-cy="register-email">
+    <mat-error id="emailError" role="alert" *ngIf="mainForm.get('email')?.errors">
+      {{ getFormControlErrorText(mainForm.get('email')!) }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="mainForm.get('contact_preference')?.value === 'phone'" appearance="fill">
+    <mat-label>{{ 'FORM.FIELDS.PHONE' | translate }} </mat-label>
+    <input matInput formControlName="phone"
+           aria-label="{{ 'FORM.FIELDS.PHONE' | translate }}"
+           aria-required="true"
+           [attr.aria-describedby]="'phoneError'"
+           placeholder="{{ 'FORM.FIELDS.PHONE' | translate }}" data-cy="register-phone">
+    <mat-error id="phoneError" role="alert" *ngIf="mainForm.get('phone')?.errors">
+      {{ getFormControlErrorText(mainForm.get('phone')!) }}
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Password -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'FORM.FIELDS.PASSWORD' | translate }} </mat-label>
+    <input matInput type="password" formControlName="password"
+           aria-label="{{ 'FORM.FIELDS.PASSWORD' | translate }}"
+           aria-required="true"
+           [attr.aria-describedby]="'passwordError'" data-cy="register-password">
+  </mat-form-field>
+  <mat-error id="passwordError" role="alert"
+             *ngIf="mainForm.get('password')?.errors?.['passwordStrength'] as errors">
+    <ul class="error-list">
+      <li *ngFor="let msg of errorMessages(errors)">{{ msg }}</li>
+    </ul>
+  </mat-error>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'FORM.FIELDS.CONFIRM_PASSWORD' | translate }} </mat-label>
+    <input matInput type="password" formControlName="confirm_password"
+           aria-label="{{ 'FORM.FIELDS.CONFIRM_PASSWORD' | translate }}"
+           aria-required="true"
+           [attr.aria-describedby]="'confirmPasswordError'" data-cy="register-confirm-password">
+    <mat-error id="confirmPasswordError" role="alert"
+               *ngIf="mainForm.get('confirm_password')?.errors?.['confirmEqual']">
+      {{ 'FORM.ERRORS.PASSWORD_MISMATCH' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Consent -->
+  <mat-checkbox formControlName="consent"
+                aria-checked="false"
+                aria-required="true"
+                [attr.aria-describedby]="'consentError'" data-cy="register-consent">
+    {{ 'FORM.FIELDS.CONSENT' | translate }}
+  </mat-checkbox>
+  <mat-error id="consentError" role="alert" *ngIf="mainForm.get('consent')?.hasError('requiredTrue')">
+    {{ getFormControlErrorText(mainForm.get('consent')!) }}
+  </mat-error>
+
+  <!-- Actions -->
+  <mat-card-actions class="actions-center">
+    <button mat-flat-button color="primary"
+        (click)="onSubmitForm()" data-cy="register-submit"
+        [disabled]="mainForm.invalid || mainForm.get('email')?.pending || mainForm.get('phone')?.pending">
+        {{ 'FORM.BUTTON.SUBMIT' | translate }}
+    </button>
+
+
+  </mat-card-actions>
+  <div>
+
+
+  <div *ngIf="emailExists">
+    <a [routerLink]="['/login']" [queryParams]="{ email: existingEmail }">
+      {{ 'FORM.LINK.LOGIN_EMAIL' | translate }}
+    </a>
+  </div>
+
+  <div *ngIf="phoneExists">
+    <a [routerLink]="['/login']" [queryParams]="{ phone: existingPhone }">
+      {{ 'FORM.LINK.LOGIN_PHONE' | translate }}
+    </a>
+  </div>
+</div>
+  <!-- Spinner -->
+  <mat-spinner class="loading" *ngIf="loading" role="status" aria-live="polite" mode="indeterminate"></mat-spinner>
+</mat-card>

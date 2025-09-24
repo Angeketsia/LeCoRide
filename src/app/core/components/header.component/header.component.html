@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span>LeCoRiDe</span>
+
+  <span class="spacer"></span>
+
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/auth/register">{{ 'REGISTER_LINK' | translate }}</a>
+    </li>
+    <li>
+      <a routerLink="/auth/login">{{ 'Sign In' | translate }}</a>
+    </li>
+    <li>
+      <a routerLink="/auth/email">{{ 'Email' | translate }}</a>
+    </li>
+    <li>
+      <a routerLink="/auth/otp">{{ 'OTPVerif' | translate }}</a>
+    </li>
+  </ul>
+
+  <mat-form-field appearance="outline" class="language-select">
+    <mat-label>
+      <mat-icon>language</mat-icon> {{ 'LANGUAGE' | translate }}
+    </mat-label>
+    <mat-select (selectionChange)="switchLanguage($event)">
+      <mat-option value="fr">{{'fr' | translate}}</mat-option>
+      <mat-option value="en">{{'en' | translate}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-toolbar>

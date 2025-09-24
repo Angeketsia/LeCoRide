@@ -1,0 +1,22 @@
+<mat-card class="main">
+
+  <div class="buttonObtain">
+    <button mat-raised-button data-cy="get-code-btn" color="primary" (click)="onGetCode()" [disabled]="loading || isBlocked" *ngIf="!codeRequested">
+      {{'OTP.GET_CODE' | translate}}
+    </button>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+  </div>
+<ng-container *ngIf="codeRequested">
+
+  <app-otp-input data-cy="otp-input" (codeCompleted)="onOtpCompleted($event)"></app-otp-input>
+
+  <div *ngIf="message" data-cy="otp-message" style="justify-content: center;display: flex;">{{ message | translate}}</div>
+
+  <app-countdown-timer data-cy="otp-timer" style="justify-content: center;display: flex;" (finished)="onTimerFinished()"></app-countdown-timer>
+  <mat-card-actions class="actions-center">
+     <button data-cy="resend-otp-btn" mat-stroked-button color="accent"  (click)="onResendOtp()" [disabled]="!canResend || isBlocked">
+              {{'OTP.RESENDD_CODE' | translate}}
+      </button>
+  </mat-card-actions>
+</ng-container>
+</mat-card>

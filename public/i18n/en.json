@@ -1,0 +1,84 @@
+{
+  "FORM":
+  {
+    "TITLE": "Registration Form",
+    "FIELDS": {
+      "LAST_NAME": "Last Name",
+      "FIRST_NAME": "First Name",
+      "CONTACT_PREFERENCE": "Choose contact method",
+      "EMAIL": "Email",
+      "PHONE": "Phone",
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password",
+      "CONSENT": "I accept the Terms of Use and Privacy Policy"
+    },
+    "BUTTON": {
+      "SUBMIT": "SUBMIT"
+    },
+    "LINK": {
+      "LOGIN_EMAIL": "This email is already used, login",
+      "LOGIN_PHONE": "This phone number is already used, login"
+    },
+    "ERRORS": {
+      "REQUIRED": "This field is required",
+      "INVALID_EMAIL": "Enter a valid email",
+      "INVALID_PHONE": "Invalid phone number",
+      "PASSWORD_MISMATCH": "Passwords do not match",
+      "PASSWORD_MIN_LENGTH": "Password must be at least 8 characters",
+      "PASSWORD_UPPER": "Password must contain at least 1 uppercase letter",
+      "PASSWORD_LOWER": "Password must contain at least 1 lowercase letter",
+      "PASSWORD_NUMBER": "Password must contain at least 1 number",
+      "PASSWORD_SPECIAL": "Password must contain at least 1 special character (@$!%*?&#)"
+    },
+    "SUCCESS": "Registration successful"
+  },
+  "REGISTER": {
+  "SUCCESS_EMAIL": "Registration successful! Check your inbox to confirm.",
+  "SUCCESS_PHONE": "Registration successful! An OTP code will be sent to your phone.",
+  "CLOSE": "Close",
+  "EMAIL_SEND_ERROR": "Error sending verification email.",
+  "VALIDATION_ERROR": "Validation error",
+  "UNKNOWN_ERROR": "Unknown error"
+},
+
+
+  "REGISTER_LINK": "Register",
+  "Sign In": "Sign In",
+  "HOME": "Home",
+  "LANGUAGE": "Choose a language",
+  "fr": "French",
+  "en": "English",
+  "OTPVerif": "OTP",
+  "Email": "Email",
+  "EMAIL_VERIFY": {
+    "VERIFYING": "Verifying...",
+    "SUCCESS": "Email successfully verified. You can now log in.",
+    "EXPIRED": "Link expired. Click below to resend.",
+    "INVALID": "Invalid link.",
+    "NETWORK_ERROR": "Network error",
+    "RESENDING": "Resending...",
+    "RESEND_SUCCESS": "Email sent! Check your inbox.",
+    "RESEND_ERROR": "Error while resending. Please try again.",
+    "CAN_RESEND": "You can resend a new email.",
+    "RESEND_LINK": "Resend link"
+  },
+
+  "OTP": {
+  "GET_CODE": "Get code",
+  "RESENDD_CODE": "Resend code",
+  "SEND_CODE": "Sending code...",
+  "RESEND_CODE": "Resending code...",
+  "ENTER_CODE": "Enter the received code.",
+  "SEND_ERROR": "Error while sending the code. Please try again.",
+  "BLOCKED": "Too many attempts. Try again in 15 minutes.",
+  "INCORRECT_ATTEMPTS": "Incorrect code. Remaining attempts: {{remaining}}",
+  "CORRECT": "Correct code. Redirecting...",
+  "CAN_RETRY": "You can try again now.",
+  "MAX_RESEND": "You have reached the maximum number of resends. Please wait 15 minutes.",
+  "RESEND_PROMPT": "Didn't receive a code? Click 'Resend code'.",
+  "VERIFYING":"Verifying..."
+},
+"COUNTDOWN_TRY_AGAIN": "Retry in {{time}}s"
+
+
+}

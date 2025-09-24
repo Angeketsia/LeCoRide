@@ -1,0 +1,18 @@
+<mat-card class="main">
+<div class="verify-wrapper">
+  <p data-cy="verify-message">{{ message | translate }}</p>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <button mat-button color="primary"
+          *ngIf="canResend"
+          (click)="onResend()" data-cy="resend-btn">
+          {{'EMAIL_VERIFY.RESEND_LINK' | translate }}
+
+  </button>
+
+  <app-countdown-timer data-cy="verify-timer"
+    #cooldownTimer
+    (finished)="onCooldownFinished()">
+  </app-countdown-timer>
+</div>
+</mat-card>

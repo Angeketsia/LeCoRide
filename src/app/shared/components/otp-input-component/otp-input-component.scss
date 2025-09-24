@@ -1,0 +1,28 @@
+.otp-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.otp-field {
+  width: 50px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.inputErr{
+  animation: shake 0.5s ease;
+}
+
+.input-error {
+  color: red !important;
+  // border-bottom: 2px solid red !important;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  75% { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}

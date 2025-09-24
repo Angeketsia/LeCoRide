@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/auth/components/verify/email-verify-component", "src/app/auth/components/verify/otp-verify-component", "src/app/shared/components/countdown-timer-component", "src/app/shared/components/otp-input-component"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]
