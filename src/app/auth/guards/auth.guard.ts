@@ -16,12 +16,3 @@ export class AuthGuard implements CanActivate {
 }
 
 
-// Depuis un composant :
-// this.authService.logout().subscribe({
-//   next: () => this.router.navigate(['/login']),
-//   error: () => {
-//     // même si erreur serveur, nettoie localement
-//     this.tokenService.clear();
-//     this.router.navigate(['/login']);
-//   }
-// });
