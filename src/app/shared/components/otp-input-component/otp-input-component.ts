@@ -7,7 +7,7 @@ import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
   templateUrl: './otp-input-component.html',
   styleUrls: ['./otp-input-component.scss']
 })
-export class OtpInputComponentTs implements OnInit {
+export class OtpInputComponent implements OnInit {
 
   // communique et renvoie le chiffre complet au parent
   @Output() codeCompleted = new EventEmitter<string>();

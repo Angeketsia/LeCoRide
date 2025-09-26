@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VerifyService } from '../../../services/verify.service';
-import { CountdownTimerComponentTs } from '../../../../shared/components/countdown-timer-component/countdown-timer-component';
+import { CountdownTimerComponent } from '../../../../shared/components/countdown-timer-component/countdown-timer-component';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -17,7 +17,7 @@ export class EmailVerifyComponent implements OnInit {
   loading = false;
   email!: string;
 
-  @ViewChild('cooldownTimer') cooldownTimer!: CountdownTimerComponentTs;
+  @ViewChild('cooldownTimer') cooldownTimer!: CountdownTimerComponent;
 
   constructor(
     private route: ActivatedRoute,

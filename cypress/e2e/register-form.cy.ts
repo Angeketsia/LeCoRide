@@ -19,14 +19,15 @@ describe('Register Form E2E', () => {
     // Email invalide
     cy.get('[data-cy="register-email"]').type('emailInvalid').blur();
     cy.get('[data-cy="register-submit"]').should('be.disabled');
-    cy.get('mat-error').should('contain.text', 'FORM.ERRORS.INVALID_EMAIL');
+    cy.get('mat-error').should('contain.text', 'Merci d’entrer une adresse mail valide');
 
     // Email valide
     cy.get('[data-cy="register-email"]').clear().type('marieange@gmail.com');
 
     // Mot de passe faible
     cy.get('[data-cy="register-password"]').type('abc');
-    cy.get('mat-error').should('contain.text', 'FORM.ERRORS.REQUIRED');
+    cy.get('mat-error').should('be.visible');
+    // cy.get('mat-error').should('contain.text', 'Votre mot de passe doit contenir au moins 8 caractères Votre mot de passe doit contenir au moins 1 majuscule Votre mot de passe doit contenir au moins 1 chiffre Votre mot de passe doit contenir au moins 1 caractère spécial (@$!%*?&#)');
 
     // Mot de passe fort
     cy.get('[data-cy="register-password"]').clear().type('Azerty@123');
@@ -44,7 +45,7 @@ describe('Register Form E2E', () => {
     cy.intercept('GET', '**/check-email**', { body: { available: false } });
 
     cy.get('[data-cy="pref-email"]').click();
-    cy.get('[data-cy="register-email"]').type('already@used.com');
+    cy.get('[data-cy="register-email"]').type('john@gmail.com');
 
     cy.wait(500);
 

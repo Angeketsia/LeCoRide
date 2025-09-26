@@ -11,7 +11,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
   exports: [
@@ -27,7 +26,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatDividerModule,
-    // MatSnackBar
   ]
 })
 export class MaterialModule {}

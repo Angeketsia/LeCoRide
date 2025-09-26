@@ -1,9 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { RegisterFormValue } from "../models/register.form.value.model";
-import { catchError, map, Observable, of } from "rxjs";
+import {Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { AppModule } from "../../app.module";
 
 @Injectable({
   providedIn: 'root'

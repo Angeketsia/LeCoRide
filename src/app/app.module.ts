@@ -1,10 +1,10 @@
-// app.module.ts
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-import { App } from './app';
+import { AppComponent } from './app';
 import { CoreModule } from './core/core-module';
 import { SharedModule } from './shared/shared-module';
 import { routes } from './app.routes';
@@ -16,12 +16,14 @@ import { TRANSLATE_HTTP_LOADER_CONFIG, TranslateHttpLoader } from '@ngx-translat
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 // Factory pour charger les fichiers JSON de traduction
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader();
 }
 @NgModule({
   declarations: [
-    App
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       multi: true
     }
   ],
-  bootstrap: [App]
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

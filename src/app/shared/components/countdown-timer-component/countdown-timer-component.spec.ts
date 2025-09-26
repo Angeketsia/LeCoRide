@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { CountdownTimerComponentTs } from './countdown-timer-component';
+import { CountdownTimerComponent } from './countdown-timer-component';
 import { By } from '@angular/platform-browser';
 
-describe('CountdownTimerComponentTs', () => {
-  let component: CountdownTimerComponentTs;
-  let fixture: ComponentFixture<CountdownTimerComponentTs>;
+describe('CountdownTimerComponent', () => {
+  let component: CountdownTimerComponent;
+  let fixture: ComponentFixture<CountdownTimerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CountdownTimerComponentTs]
+      declarations: [CountdownTimerComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CountdownTimerComponentTs);
+    fixture = TestBed.createComponent(CountdownTimerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

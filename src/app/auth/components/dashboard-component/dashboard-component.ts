@@ -1,14 +1,14 @@
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   standalone: false,
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.scss']
+  templateUrl: './dashboard-component.html',
+  styleUrls: ['./dashboard-component.scss']
 })
-export class Dashboard implements OnInit {
+export class DashboardComponent implements OnInit {
   data = '';
 
   constructor(private http: HttpClient, private authService: AuthService,
@@ -17,7 +17,7 @@ export class Dashboard implements OnInit {
   ngOnInit(): void {
     this.http.get('/protected').subscribe({
       next: (res: any) => this.data = res.success ? 'success' : 'failed',
-      error: (err) => this.data = 'failed'
+      error: (err) => this.data = err ? 'failed' : 'failed'
     });
   }
 

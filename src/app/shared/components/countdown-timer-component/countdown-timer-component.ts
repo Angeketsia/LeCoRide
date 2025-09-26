@@ -7,7 +7,7 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './countdown-timer-component.html',
   styleUrls: ['./countdown-timer-component.scss']
 })
-export class CountdownTimerComponentTs implements OnDestroy {
+export class CountdownTimerComponent implements OnDestroy {
   @Input() duration = 30; // durée en secondes
   @Output() finished = new EventEmitter<void>();
 

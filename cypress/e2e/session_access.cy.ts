@@ -16,11 +16,11 @@ describe('Authentication Flow', () => {
       }).as('login');
 
       // Remplir le formulaire
-      cy.get('input[name=email]').type('test@example.com');
+      cy.get('input[name=email]').type('marieAnge@example.com');
       cy.get('input[name=password]').type('password123');
     });
 
-    it('should login successfully and store access token', () => {
+    it('se connnecter et sauvegarder le token', () => {
       cy.get('button[type=submit]').click();
       cy.wait('@login');
 
@@ -33,7 +33,7 @@ describe('Authentication Flow', () => {
   });
 
 
-  describe('Access protected route with token refresh', () => {
+  describe('rafraichir le token une fois expiré', () => {
 
     beforeEach(() => {
       // Intercepts avant la visite du dashboard
@@ -53,7 +53,6 @@ describe('Authentication Flow', () => {
         body: { accessToken: 'newToken', refreshToken: 'refreshToken' }
       }).as('refresh');
 
-      // Définir le token initial pour simuler utilisateur déjà connecté
       cy.window().then(win => {
         win.localStorage.setItem('app_access_token', 'shortToken');
       });
@@ -61,7 +60,7 @@ describe('Authentication Flow', () => {
       cy.visit('/dashboard');
     });
 
-    it('should refresh token on 401 and access protected data', () => {
+    it('rafraichir si erreur 401 et route protégée', () => {
       // Dashboard déclenche automatiquement /protected
       cy.wait('@protected'); // 401 initial
       cy.wait('@refresh');   // refresh token
@@ -86,17 +85,6 @@ describe('Authentication Flow', () => {
         win.localStorage.setItem('app_access_token', 'newToken');
       });
 
-      // Ajouter le bouton logout si pas encore dans ton template
-      cy.document().then(doc => {
-        if (!doc.querySelector('#logout')) {
-          const btn = doc.createElement('button');
-          btn.id = 'logout';
-          btn.textContent = 'Logout';
-          btn.onclick = () => localStorage.removeItem('app_access_token');
-          doc.body.appendChild(btn);
-        }
-      });
-
       // Intercepter la requête logout
       cy.intercept('POST', 'http://localhost:3000/api/auth/logout', {
         statusCode: 200,
@@ -104,10 +92,9 @@ describe('Authentication Flow', () => {
       }).as('logout');
     });
 
-  it('should clear access token on logout', () => {
+  it('supprimer token et se deconnecter', () => {
   cy.get('button#logout').should('be.visible').click();
 
-  // Attendre la requête logout
   cy.wait('@logout');
 
   // Vérifier que le token est supprimé

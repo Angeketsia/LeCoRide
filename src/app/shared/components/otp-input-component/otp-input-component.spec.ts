@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { OtpInputComponentTs } from './otp-input-component';
+import { OtpInputComponent } from './otp-input-component';
 import { ElementRef, QueryList } from '@angular/core';
 import { SharedModule } from '../../shared-module';
   import { fakeAsync, tick } from '@angular/core/testing';
 
-describe('OtpInputComponentTs', () => {
-  let component: OtpInputComponentTs;
-  let fixture: ComponentFixture<OtpInputComponentTs>;
+describe('OtpInputComponent', () => {
+  let component: OtpInputComponent;
+  let fixture: ComponentFixture<OtpInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OtpInputComponentTs],
+      declarations: [OtpInputComponent],
       imports: [ ReactiveFormsModule, SharedModule]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OtpInputComponentTs);
+    fixture = TestBed.createComponent(OtpInputComponent);
     component = fixture.componentInstance;
 
     // Simuler les inputs pour QueryList

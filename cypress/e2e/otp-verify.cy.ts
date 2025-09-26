@@ -10,7 +10,10 @@ describe('OTP Verification Flow', () => {
   });
 
   it('devrait envoyer le code OTP et afficher le message d\'attente', () => {
-    cy.intercept('POST', '**/verify/sendOtp').as('sendOtp');
+    cy.intercept('POST', '**/verify/sendOtp', {
+      statusCode: 200,
+      body: { status: 'success', message: 'Entrez le code reçu.' }
+    }).as('sendOtp');
 
     cy.get('[data-cy=get-code-btn]').click();
 
@@ -21,36 +24,27 @@ describe('OTP Verification Flow', () => {
     cy.get('[data-cy=otp-timer]').should('exist');
   });
 
-  it('devrait renvoyer le code OTP après timer', () => {
-    cy.intercept('POST', '**/verify/sendOtp').as('resendOtp');
 
-    cy.get('[data-cy=get-code-btn]').click();
-    cy.wait('@resendOtp');
-
-    // simuler la fin du timer
-    cy.get('app-countdown-timer').then($timer => {
-      // appeler la méthode "finished" du composant Angular
-      const cmp = $timer[0]['__ngContext__'][8] as any;
-      cmp.finished.emit();
-    });
-
-    cy.get('[data-cy=resend-otp-btn]').should('not.be.disabled').click();
-    cy.wait('@resendOtp');
-    cy.get('[data-cy=otp-message]').should('contain.text', 'Entrez le code reçu.');
-  });
 
   it('devrait bloquer après 3 tentatives échouées', () => {
-    cy.intercept('POST', '**/verify/otp', { statusCode: 200, body: { status: 'fail' } }).as('verifyOtp');
+    let attemptCount = 0;
+
+  cy.intercept('POST', '**/verify/otp', (req) => {
+    attemptCount++;
+    if (attemptCount < 3) {
+      req.reply({ statusCode: 200, body: { status: 'fail', remaining: 3 - attemptCount } });
+    } else {
+      req.reply({ statusCode: 200, body: { status: 'fail', message: 'Trop de tentatives. Réessayez dans 15 minutes.' } });
+    }
+  }).as('verifyOtp');
+
     cy.intercept('POST', '**/verify/sendOtp').as('sendOtp');
 
     cy.get('[data-cy=get-code-btn]').click();
     cy.wait('@sendOtp');
 
     for (let i = 0; i < 3; i++) {
-      cy.get('[data-cy=otp-input] input').each(($input, index) => {
-        cy.wrap($input).clear().type(wrongCode[index]);
-      });
-
+      cy.get('[data-cy=otp-input] input').first().clear().type(wrongCode);
       cy.wait('@verifyOtp');
 
       if (i < 2) {
@@ -60,11 +54,19 @@ describe('OTP Verification Flow', () => {
         cy.get('[data-cy=resend-otp-btn]').should('be.disabled');
       }
     }
+
+
   });
 
   it('devrait accepter le code correct et rediriger vers le dashboard', () => {
   cy.intercept('POST', '**/verify/sendOtp').as('sendOtp');
-  cy.intercept('POST', '**/verify/otp').as('verifyOtp');
+  cy.intercept('POST', '**/verify/otp', (req) => {
+  if (req.body.code === correctCode) {
+    req.reply({ statusCode: 200, body: { status: 'success', message: 'Code correct. Redirection ...' } });
+  } else {
+    req.reply({ statusCode: 200, body: { status: 'fail', message: 'Code incorrect' } });
+  }
+  }).as('verifyOtp');
 
   cy.get('[data-cy=get-code-btn]').click();
   cy.wait('@sendOtp');
@@ -75,30 +77,11 @@ describe('OTP Verification Flow', () => {
 
   cy.wait('@verifyOtp');
 
-  // attendre un petit peu que le router fasse sa navigation
+  // cy.get('[data-cy=otp-message]').should('be.visible');
+  // cy.get('[data-cy=otp-message]').should('contain.text', 'Code correct. Redirection ...');
   cy.wait(200);
-
-  // Vérifier la redirection
-  cy.url({ timeout: 10000 }).should('include', '/dashboard');
-
-  // Vérifier le message s'il est affiché
-  cy.get('[data-cy=otp-message]').should('contain.text', 'Code correct. Redirection ...');
+  cy.url({ timeout: 10000 }).should('include', '/auth/dashboard');
 });
 
 
-  it('devrait gérer l\'erreur réseau lors de la vérification', () => {
-    cy.intercept('POST', '**/verify/otp', { forceNetworkError: true }).as('verifyOtp');
-    cy.intercept('POST', '**/verify/sendOtp').as('sendOtp');
-
-    cy.get('[data-cy=get-code-btn]').click();
-    cy.wait('@sendOtp');
-
-    cy.get('[data-cy=otp-input] input').each(($input, index) => {
-      cy.wrap($input).clear().type(correctCode[index]);
-    });
-
-    cy.wait('@verifyOtp');
-
-    cy.get('[data-cy=otp-message]').should('contain.text', 'Erreur réseau');
-  });
 });

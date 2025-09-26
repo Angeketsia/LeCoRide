@@ -1,5 +1,5 @@
 // validators/availability.validator.ts
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
 import { debounceTime, distinctUntilChanged, first, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';

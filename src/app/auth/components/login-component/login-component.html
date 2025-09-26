@@ -1,4 +1,4 @@
-<mat-card class="login-form" [formGroup]="loginForm">
+<mat-card class="main-form"  [formGroup]="loginForm">
   <mat-card-title>Login</mat-card-title>
   <mat-divider></mat-divider>
 
@@ -19,7 +19,7 @@
   </mat-form-field>
 
   <!-- Submit -->
-  <mat-card-actions>
+  <mat-card-actions class="actions-center">
     <button mat-flat-button color="primary" (click)="onLogin()"
             type="submit">Login</button>
   </mat-card-actions>

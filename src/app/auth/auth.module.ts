@@ -8,7 +8,7 @@ import { ɵInternalFormsSharedModule } from "@angular/forms";
 import { OtpVerifyComponent } from "./components/verify/otp-verify-component/otp-verify-component";
 import { EmailVerifyComponent } from "./components/verify/email-verify-component/email-verify-component";
 import { LoginComponent } from "./components/login-component/login-component";
-import { Dashboard } from "./components/dashboard/dashboard";
+import { DashboardComponent } from "./components/dashboard-component/dashboard-component";
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { Dashboard } from "./components/dashboard/dashboard";
     OtpVerifyComponent,
     EmailVerifyComponent,
     LoginComponent,
-    Dashboard
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +30,7 @@ import { Dashboard } from "./components/dashboard/dashboard";
     OtpVerifyComponent,
     EmailVerifyComponent,
     LoginComponent,
-    Dashboard
+    DashboardComponent
   ],
   providers: [
     RegisterService

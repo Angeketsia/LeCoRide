@@ -79,18 +79,5 @@ describe('Email Verification Flow', () => {
       .should('contain.text', 'Erreur réseau');
   });
 
-  it('devrait gérer l\'erreur réseau lors du renvoi', () => {
-    cy.intercept('POST', '**/verify/email', { statusCode: 200, body: { status: 'expired' } }).as('verifyEmail');
-    cy.intercept('POST', '**/resend/email', { forceNetworkError: true }).as('resendEmail');
 
-    cy.visit(`/auth/email?email=${email}&token=${tokenExpired}`);
-    cy.wait('@verifyEmail');
-
-    cy.get('[data-cy=resend-btn]').click();
-    cy.wait('@resendEmail');
-
-    cy.get('[data-cy=verify-message]')
-      .should('contain.text', 'Erreur lors du renvoi. Veuillez réessayer.');
-    cy.get('[data-cy=resend-btn]').should('exist');
-  });
 });

@@ -1,0 +1,89 @@
+
+.main-form {
+  width: 50%;
+  margin: 2% auto;
+  padding: 10px 16px;
+}
+
+.form-row{
+  margin-top: 15px;
+}
+
+
+.form-lign {
+
+  width: 50%;
+  margin-left: 10px;
+
+  &.full-width {
+    width: 85%;
+    margin-left: 10%;
+  }
+}
+.form-lign1 {
+
+  width: 48%;
+  &.full-width {
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+
+mat-radio-group{
+  margin-bottom: 10px;
+}
+
+mat-card-title{
+  margin: 20px;
+  text-align: center;
+
+}
+
+.form-row {
+  width: 100%;
+
+}
+
+.form-card {
+  margin: 20px 10px;
+  padding: 15px ;
+}
+
+
+.actions-center {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  margin-top: 1rem;       /* optionnel, espace au-dessus */
+}
+.error-list{
+  margin-top: -25px;
+}
+
+.main-form {
+  padding-bottom: 30px;
+  position: relative;
+}
+
+// .loading {
+//   position: absolute;
+//   top: -10px;
+//   bottom: -10px;
+//   left: -10px;
+//   right: -10px;
+//   height: inherit;
+//   z-index: 10;
+//   backdrop-filter: blur(5px);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 1rem;
+// }
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(36, 92, 195);
+  align-items: right;
+  display: flex;
+  justify-content: right;
+}

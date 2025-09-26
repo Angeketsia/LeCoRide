@@ -4,7 +4,7 @@ import { RegisterFormComponent } from './components/register-form-component/regi
 import { EmailVerifyComponent } from './components/verify/email-verify-component/email-verify-component';
 import { OtpVerifyComponent } from './components/verify/otp-verify-component/otp-verify-component';
 import { LoginComponent } from './components/login-component/login-component';
-import { Dashboard } from './components/dashboard/dashboard';
+import { DashboardComponent } from './components/dashboard-component/dashboard-component';
 
 const routes: Routes = [
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: Dashboard
+    component: DashboardComponent
   }
 ];
 

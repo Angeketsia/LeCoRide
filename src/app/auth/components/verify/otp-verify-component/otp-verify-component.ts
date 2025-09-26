@@ -1,7 +1,7 @@
 import { VerifyService } from './../../../services/verify.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CountdownTimerComponentTs } from '../../../../shared/components/countdown-timer-component/countdown-timer-component';
-import { OtpInputComponentTs } from '../../../../shared/components/otp-input-component/otp-input-component';
+import { CountdownTimerComponent } from '../../../../shared/components/countdown-timer-component/countdown-timer-component';
+import { OtpInputComponent } from '../../../../shared/components/otp-input-component/otp-input-component';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -36,8 +36,8 @@ export class OtpVerifyComponent implements OnInit {
     });
   }
 
-  @ViewChild(CountdownTimerComponentTs) timer!: CountdownTimerComponentTs;
-  @ViewChild(OtpInputComponentTs) otpInput!: OtpInputComponentTs;
+  @ViewChild(CountdownTimerComponent) timer!: CountdownTimerComponent;
+  @ViewChild(OtpInputComponent) otpInput!: OtpInputComponent;
 
   // === Quand on clique sur "Obtenir code" ===
   onGetCode() {
@@ -47,7 +47,7 @@ export class OtpVerifyComponent implements OnInit {
     this.message = this.translate.instant('OTP.SEND_CODE'); // "Envoi du code en cours..."
 
     this.verifyService.sendOtp(this.phone).subscribe({
-      next: (res) => {
+      next: () => {
         this.loading = false;
         this.message = this.translate.instant('OTP.ENTER_CODE'); // "Entrez le code reçu."
         this.timer.duration = 60;
@@ -74,7 +74,7 @@ export class OtpVerifyComponent implements OnInit {
     this.message = this.translate.instant('OTP.RESEND_CODE'); // "Envoi du code en cours..."
 
     this.verifyService.sendOtp(this.phone).subscribe({
-      next: (res) => {
+      next: () => {
         this.loading = false;
         this.message = this.translate.instant('OTP.ENTER_CODE'); // "Entrez le code reçu."
         this.timer.duration = 60;
@@ -108,7 +108,7 @@ export class OtpVerifyComponent implements OnInit {
           }
           this.codeRequested = false;
 
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/auth/dashboard');
         } else {
           // échec côté backend
           this.attempts++;
