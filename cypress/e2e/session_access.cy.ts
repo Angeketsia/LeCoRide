@@ -15,8 +15,14 @@ describe('Authentication Flow', () => {
         body: { accessToken: 'shortToken', refreshToken: 'refreshToken' }
       }).as('login');
 
+      // Intercept /protected
+      cy.intercept('GET', '**/protected', {
+      statusCode: 200,
+      body: { success: true }
+      }).as('protected');
+
       // Remplir le formulaire
-      cy.get('input[name=email]').type('marieAnge@example.com');
+      cy.get('input[name=emailOrPhone]').type('marieAnge@example.com');
       cy.get('input[name=password]').type('password123');
     });
 
@@ -26,7 +32,7 @@ describe('Authentication Flow', () => {
 
       // Vérifier que le token a été sauvegardé
       cy.window().its('localStorage.app_access_token').should('eq', 'shortToken');
-
+      cy.wait('@protected');
       // Vérifier navigation
       cy.url().should('include', '/dashboard');
     });
@@ -78,14 +84,11 @@ describe('Authentication Flow', () => {
   describe('Logout', () => {
 
     beforeEach(() => {
-      cy.visit('/dashboard');
-
-      // Simuler token connecté
-      cy.window().then(win => {
-        win.localStorage.setItem('app_access_token', 'newToken');
+      cy.visit('/dashboard', {
+        onBeforeLoad(win) {
+          win.localStorage.setItem('app_access_token', 'newToken');
+        }
       });
-
-      // Intercepter la requête logout
       cy.intercept('POST', 'http://localhost:3000/api/auth/logout', {
         statusCode: 200,
         body: {}
@@ -93,7 +96,7 @@ describe('Authentication Flow', () => {
     });
 
   it('supprimer token et se deconnecter', () => {
-  cy.get('button#logout').should('be.visible').click();
+  cy.get('button#logout',{timeout: 10000 }).should('be.visible').click();
 
   cy.wait('@logout');
 

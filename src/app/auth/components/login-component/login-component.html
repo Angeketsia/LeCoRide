@@ -1,27 +1,27 @@
-<mat-card class="main-form"  [formGroup]="loginForm">
-  <mat-card-title>Login</mat-card-title>
+<mat-card class="main-form" [formGroup]="loginForm">
+  <mat-card-title>{{ 'LOGIN.TITLE' | translate }}</mat-card-title>
   <mat-divider></mat-divider>
 
-  <!-- Email -->
   <mat-form-field appearance="fill">
-    <mat-label>Email</mat-label>
-    <input matInput formControlName="email"
-           placeholder="Enter email"
-           name="email" />
+    <mat-label>{{ 'LOGIN.EMAIL_OR_PHONE' | translate }}</mat-label>
+    <input matInput formControlName="emailOrPhone"
+           [placeholder]="'LOGIN.EMAIL_OR_PHONE_PLACEHOLDER' | translate"
+           name="emailOrPhone" />
   </mat-form-field>
 
-  <!-- Password -->
   <mat-form-field appearance="fill">
-    <mat-label>Password</mat-label>
+    <mat-label>{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
     <input matInput type="password" formControlName="password"
-           placeholder="Enter password"
+           [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
            name="password" />
   </mat-form-field>
 
-  <!-- Submit -->
   <mat-card-actions class="actions-center">
     <button mat-flat-button color="primary" (click)="onLogin()"
-            type="submit">Login</button>
+            type="submit">{{ 'LOGIN.BUTTON' | translate }}</button>
   </mat-card-actions>
-</mat-card>
 
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</mat-card>

@@ -75,7 +75,16 @@
     "RESEND_PROMPT": "Vous n'avez pas reçu de code ? cliquez sur 'Renvoyer le code'.",
     "VERIFYING":"Vérification en cours..."
   },
-  "COUNTDOWN_TRY_AGAIN": "Réessayez dans {{time}}s"
+  "COUNTDOWN_TRY_AGAIN": "Réessayez dans {{time}}s",
+  "LOGIN": {
+    "TITLE": "Connexion",
+    "EMAIL_OR_PHONE": "Email ou téléphone",
+    "EMAIL_OR_PHONE_PLACEHOLDER": "Entrez votre email ou téléphone",
+    "PASSWORD": "Mot de passe",
+    "PASSWORD_PLACEHOLDER": "Entrez votre mot de passe",
+    "BUTTON": "Se connecter",
+    "FAILED": "Échec de la connexion"
+  }
 }
 
 

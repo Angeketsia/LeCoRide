@@ -49,7 +49,6 @@ describe('Register Form E2E', () => {
 
     cy.wait(500);
 
-    // cy.get('mat-error').should('contain.text', 'FORM.LINK.LOGIN_EMAIL');
   });
 
   it('téléphone déjà utilisé (async validator)', () => {
@@ -60,7 +59,6 @@ describe('Register Form E2E', () => {
 
     cy.wait(500);
 
-    // cy.get('mat-error').should('contain.text', 'FORM.LINK.LOGIN_PHONE');
   });
 
   it('soumission succès par email', () => {
@@ -83,9 +81,7 @@ describe('Register Form E2E', () => {
     // Snackbar
     cy.get('simple-snack-bar').should('contain.text', 'Inscription réussie');
 
-    // Redirection vers email-verify
-    // cy.url().should('include', '/email-verify');
-    // cy.get('[data-cy=email-code]').should('exist');
+
   });
 
   it('soumission succès par téléphone', () => {

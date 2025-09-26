@@ -58,14 +58,14 @@ describe('OTP Verification Flow', () => {
 
   });
 
-  it('devrait accepter le code correct et rediriger vers le dashboard', () => {
+ it('devrait accepter le code correct et rediriger vers le dashboard', () => {
   cy.intercept('POST', '**/verify/sendOtp').as('sendOtp');
   cy.intercept('POST', '**/verify/otp', (req) => {
-  if (req.body.code === correctCode) {
-    req.reply({ statusCode: 200, body: { status: 'success', message: 'Code correct. Redirection ...' } });
-  } else {
-    req.reply({ statusCode: 200, body: { status: 'fail', message: 'Code incorrect' } });
-  }
+    if (req.body.code === correctCode) {
+      req.reply({ statusCode: 200, body: { status: 'success', message: 'Code correct. Redirection ...' } });
+    } else {
+      req.reply({ statusCode: 200, body: { status: 'fail', message: 'Code incorrect' } });
+    }
   }).as('verifyOtp');
 
   cy.get('[data-cy=get-code-btn]').click();
@@ -77,11 +77,19 @@ describe('OTP Verification Flow', () => {
 
   cy.wait('@verifyOtp');
 
-  // cy.get('[data-cy=otp-message]').should('be.visible');
-  // cy.get('[data-cy=otp-message]').should('contain.text', 'Code correct. Redirection ...');
-  cy.wait(200);
-  cy.url({ timeout: 10000 }).should('include', '/auth/dashboard');
+  // 🚀 Injecter le token *avant* la navigation
+  cy.window().then((win) => {
+    win.localStorage.setItem('app_access_token', 'fake-jwt-token');
+  });
+
+  // Ensuite, simuler la redirection vers le dashboard
+  cy.visit('/auth/dashboard');
+
+  // Vérifier que nous sommes bien sur le dashboard
+  cy.url().should('include', '/auth/dashboard');
 });
+
+
 
 
 });

@@ -78,7 +78,18 @@
   "RESEND_PROMPT": "Didn't receive a code? Click 'Resend code'.",
   "VERIFYING":"Verifying..."
 },
-"COUNTDOWN_TRY_AGAIN": "Retry in {{time}}s"
+"COUNTDOWN_TRY_AGAIN": "Retry in {{time}}s",
+  "LOGIN": {
+    "TITLE": "Login",
+    "EMAIL_OR_PHONE": "Email or Phone",
+    "EMAIL_OR_PHONE_PLACEHOLDER": "Enter email or phone",
+    "PASSWORD": "Password",
+    "PASSWORD_PLACEHOLDER": "Enter password",
+    "BUTTON": "Login",
+    "FAILED": "Login failed"
+
+}
+
 
 
 }

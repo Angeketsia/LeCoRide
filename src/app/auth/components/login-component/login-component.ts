@@ -1,8 +1,8 @@
-// login.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -15,30 +15,42 @@ export class LoginComponent implements OnInit {
   loading = false;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      emailOrPhone: ['', [Validators.required]],
       password: ['', Validators.required],
     });
-  }
 
+    this.route.queryParams.subscribe(params => {
+    const value = params['email'] || params['phone'] || params['value'];
+      if (value) {
+        this.loginForm.patchValue({ emailOrPhone: value });
+      }
+    });
+  }
 
   onLogin() {
     if (this.loginForm.invalid) return;
     this.loading = true;
     this.errorMessage = '';
 
-    const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe({
+    const { emailOrPhone, password } = this.loginForm.value;
+    this.authService.login(emailOrPhone, password).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(['/dashboard']); // page protégée
+        this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         this.loading = false;
-        this.errorMessage = err?.error?.message || 'Login failed';
+        this.errorMessage = err?.error?.message || this.translate.instant('LOGIN.FAILED');
       }
     });
   }

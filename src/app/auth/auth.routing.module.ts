@@ -5,6 +5,7 @@ import { EmailVerifyComponent } from './components/verify/email-verify-component
 import { OtpVerifyComponent } from './components/verify/otp-verify-component/otp-verify-component';
 import { LoginComponent } from './components/login-component/login-component';
 import { DashboardComponent } from './components/dashboard-component/dashboard-component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
