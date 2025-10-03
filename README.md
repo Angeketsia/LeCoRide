@@ -229,7 +229,7 @@ Email – Renvoi
 NB: Backend doit supporter cookie HttpOnly pour refresh token
 
 ## Lien Github
-https://github.com/Angeketsia/LeCoRide.git
+`https://github.com/Angeketsia/LeCoRide.git`
 
 
 ##  Resources additionnelles
