@@ -41,7 +41,7 @@ export class EmailVerifyComponent implements OnInit {
     this.track('verifyStarted');
 
     this.verifyService.verifyEmail(token).subscribe({
-      next: (res: any) => {
+      next: (res: { status: 'success' | 'expired' | 'invalid'; message?: string }) => {
         this.loading = false;
         if (res.status === 'success') {
           this.message = this.translate.instant('EMAIL_VERIFY.SUCCESS');
@@ -93,7 +93,7 @@ export class EmailVerifyComponent implements OnInit {
     // "Vous pouvez renvoyer un nouvel email."
   }
 
-  track(event: string, data: any = {}) {
+  track(event: string, data: unknown = {}) {
     console.log('[Tracking]', event, data);
   }
 }

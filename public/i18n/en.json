@@ -80,12 +80,12 @@
 },
 "COUNTDOWN_TRY_AGAIN": "Retry in {{time}}s",
   "LOGIN": {
-    "TITLE": "Login",
+    "TITLE": "LOGIN",
     "EMAIL_OR_PHONE": "Email or Phone",
     "EMAIL_OR_PHONE_PLACEHOLDER": "Enter email or phone",
     "PASSWORD": "Password",
     "PASSWORD_PLACEHOLDER": "Enter password",
-    "BUTTON": "Login",
+    "BUTTON": "LOGIN",
     "FAILED": "Login failed"
 
 }

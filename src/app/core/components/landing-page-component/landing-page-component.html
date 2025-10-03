@@ -1,0 +1,23 @@
+<div class="landing-container">
+  <mat-card class="landing-card">
+    <mat-card-header>
+      <mat-icon class="logo-icon driving">local_taxi</mat-icon>
+    </mat-card-header>
+
+    <mat-card-content>
+      <h1>Bienvenue sur <span class="brand">LeCoRide</span></h1>
+      <p class="subtitle">
+        La plateforme de transport urbain inclusive et intelligente
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions class="actions">
+      <button mat-raised-button color="primary">
+          <a routerLink="/auth/login">{{ 'Sign In' | translate }}</a>
+      </button>
+      <button mat-stroked-button color="accent">
+        <a style="color: rgb(255, 98, 0);" routerLink="/auth/register">{{ 'REGISTER_LINK' | translate }}</a>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

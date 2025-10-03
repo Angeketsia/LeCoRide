@@ -20,7 +20,7 @@ export class AuthService {
       );
   }
 
-  logout(): Observable<any> {
+  logout(): Observable<unknown> {
     // Option: call backend to invalidate refresh token (server-side)
     return this.http.post(`${this.base}/logout`, {}).pipe(
       tap(() => {

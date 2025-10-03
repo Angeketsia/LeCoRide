@@ -77,12 +77,12 @@
   },
   "COUNTDOWN_TRY_AGAIN": "Réessayez dans {{time}}s",
   "LOGIN": {
-    "TITLE": "Connexion",
+    "TITLE": "CONNEXION",
     "EMAIL_OR_PHONE": "Email ou téléphone",
     "EMAIL_OR_PHONE_PLACEHOLDER": "Entrez votre email ou téléphone",
     "PASSWORD": "Mot de passe",
     "PASSWORD_PLACEHOLDER": "Entrez votre mot de passe",
-    "BUTTON": "Se connecter",
+    "BUTTON": "SE CONNECTER",
     "FAILED": "Échec de la connexion"
   }
 }

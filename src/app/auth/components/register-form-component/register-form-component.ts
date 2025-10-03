@@ -123,7 +123,7 @@ export class RegisterFormComponent implements OnInit {
     return this.translate.instant('FORM.ERRORS.REQUIRED');
   }
 
-  errorMessages(errors: any): string[] {
+  errorMessages(errors: Record<string, string> | null | undefined): string[] {
     if (!errors) return [];
     return Object.values(errors as Record<string, string>).map(msg => this.translate.instant(msg));
   }

@@ -1,26 +1,38 @@
-# MiniApp
+# MiniApp LeCoRide 
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
+Ce projet est une application pour la commande de taxis et la gestion des utilisateurs. 
+Il a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
 
-## Development server
+## Architecture
+app/ : module racine avec fichier de configuration appModule
+core/: gestion de l'etat du projet, services singleton (navbar(headerComponent))
+shared/: composants, pipes et directives reutilisables 
+auth/: fonctionnalites liees a l'authentification et l'inscription(formulaire d'inscription, login, verification otp/email), guards et intercepteur
+environments/: configuration pour dev/prod
 
-To start a local development server, run:
+## Installation et developpement
+
+Installer les dependances
+  ```bash
+  npm install
+  ```
+Lancer le serveur de developpement:
+  ```bash
+  ng serve
+  ```
+  Ouvrir le navigateur sur `http://localhost:4200/`. Le projet se recharge automatiquement a chaque modification.
+
+
+## Generation de composants, services ou modules
+
 
 ```bash
-ng serve
+ng generate component nom-du-composant
+ng generate service nom-du-service
+ng generate module nom-du-module 
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Pour une aide complete de generation (comme `components`, `directives`, ou `pipes`), lancer:
 
 ```bash
 ng generate --help
@@ -28,32 +40,198 @@ ng generate --help
 
 ## Building
 
-To build the project run:
 
 ```bash
 ng build
 ```
+Les artefacts sont stockes dans le dossier `dist/`. Le build de production est optimisé.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+## Tests unitaires 
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Framework: Jasmine + Karma [Karma](https://karma-runner.github.io)
 
+Commande: 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Tests end-to-end 
 
-For end-to-end (e2e) testing, run:
+Framework: Cypress
 
+Commande:
 ```bash
 ng e2e
 ```
+Scénarios couverts: 
+  - Inscription d'un nouvel utilisateur
+  - Verification par OTP si methode telephone et email si methode email
+  - Session jwt, guards et intercepteurs, connexion et deconnexion
+Angular CLI ne vient pas par défaut avec un end-to-end framework de tests. Installez celui que vous voulez.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Lint et qualité TypeScript
+Lint: ESLint
+Commande:
+```bash
+npm run lint
+```
+TypeScript strict: activé
+Pas de any non justifié: respecté, préféré unknown + narrowing
+Respect SOLID: services decouples via interfaces, dépendances injectées, tests ciblés
 
-## Additional Resources
+## Routes Api
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Auth – Login
+  POST /auth/login
+  Payload:
+
+  {
+    "emailOrPhone": "string",
+    "password": "string"
+  }
+  Response (success):
+  {
+    "accessToken": "string",
+    "refreshToken": "string" // optionnel
+  }
+  Response (error) : HTTP 400/401 avec message
+
+
+Auth – Logout
+  POST /auth/logout
+  Effet : suppression des tokens côté client  côté serveur
+
+
+Auth – Refresh Token
+  POST /auth/refresh
+  Payload :
+  Si cookie HttpOnly : {}
+  Sinon : { "refreshToken": "string" }
+  Response (success):
+  {
+    "accessToken": "string",
+    "refreshToken": "string" // optionnel
+  }
+
+
+Register – Inscription
+  POST /auth-register
+  Payload:
+  {
+    "firstName": "string",
+    "lastName": "string",
+    "email": "string",
+    "phone": "string",
+    "password": "string"
+  }
+  Response (success):
+
+  {
+    "success": true,
+    "status": 200
+  }
+
+  Response (error):
+  {
+    "success": false,
+    "status": 400,
+    "message": "Erreur de validation"
+  }
+
+
+Register – Vérifier disponibilité
+  GET /check-email?value=… ou /check-phone?value=…
+  Response:
+  {
+    "available": true|false
+  }
+
+
+OTP – Envoi
+  POST /verify/sendOtp
+  Payload:
+
+  {
+    "phone": "string"
+  }
+
+
+OTP – Vérification
+  POST /verify/otp
+  Payload:
+
+  {
+    "phone": "string",
+    "code": "string"
+  }
+
+  Response (success):
+  {
+    "status": "success"
+  }
+  Response (failure):
+
+  {
+    "status": "failed",
+    "message": "optionnel"
+  }
+
+
+OTP – Renvoi
+  POST /resend/otp
+  Payload:
+  {
+    "phone": "string"
+  }
+
+  Email – Envoi vérification
+  POST /verify/sendEmail
+  Payload:
+  {
+    "email": "string"
+  }
+
+
+Email – Vérification
+  POST /verify-email
+  Payload:
+
+  {
+    "token": "string"
+  }
+  Response (success):
+
+  {
+    "status": "success",
+    "message": "Email vérifié"
+  }
+  Response (expired):
+
+  {
+    "status": "expired",
+    "message": "Lien expiré"
+  }
+  Response (invalid):
+  {
+    "status": "invalid",
+    "message": "Token invalide"
+  }
+
+
+Email – Renvoi
+  POST /resend/email
+  Payload:
+  {
+    "email": "string"
+  }
+
+NB: Backend doit supporter cookie HttpOnly pour refresh token
+
+## Lien Github
+
+
+
+##  Resources additionnelles
+
+Pour plus d'informations, visiter [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)

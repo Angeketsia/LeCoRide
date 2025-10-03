@@ -47,6 +47,7 @@ export class OtpInputComponent implements OnInit {
 
   // pour avancer automatiquement au prochain input, garde le dernier caractere si le user colle plusieurs chiffres
   // met a jout le formArray, passe le focus a l'input sivant, verifie si le code est complet
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onInput(event: any, index: number) {
     const input = event.target;
     const value = input.value;

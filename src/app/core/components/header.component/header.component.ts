@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+  import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-header-component',
@@ -15,9 +16,11 @@ export class HeaderComponent {
     this.translate.setDefaultLang('fr');
   }
 
- switchLanguage(event: any) { 
+
+switchLanguage(event: MatSelectChange) {
   this.translate.use(event.value);
-  }
+}
+
 
 
 }

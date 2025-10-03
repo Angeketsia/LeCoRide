@@ -5,12 +5,14 @@ import { HeaderComponent } from './components/header.component/header.component'
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { LandingPageComponent } from './components/landing-page-component/landing-page-component';
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    LandingPageComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    LandingPageComponent
   ]
 })
 export class CoreModule { }

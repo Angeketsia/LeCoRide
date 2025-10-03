@@ -96,7 +96,7 @@ export class OtpVerifyComponent implements OnInit {
     this.track('verifyStarted');
 
     this.verifyService.verifyOtp(this.phone, code).subscribe({
-      next: (res: any) => {
+      next: (res: { status: 'success' | 'failed'; message?: string }) => {
         this.loading = false;
 
         if (res.status === 'success') {
@@ -166,7 +166,7 @@ export class OtpVerifyComponent implements OnInit {
     this.onResendCode();
   }
 
-  track(event: string, data: any = {}) {
+  track(event: string, data: unknown = {}) {
     console.log('[Tracking]', event, data);
   }
 }

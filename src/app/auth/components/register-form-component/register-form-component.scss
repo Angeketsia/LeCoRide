@@ -1,7 +1,8 @@
 
 .main-form {
-  width: 50%;
-  margin: 2% auto;
+  min-width: 60%;
+  max-width: 100%;
+  margin: 2% 150px;
   padding: 10px 16px;
 }
 
@@ -11,7 +12,6 @@
 
 
 .form-lign {
-
   width: 50%;
   margin-left: 10px;
 
@@ -52,8 +52,8 @@ mat-card-title{
 
 .actions-center {
   display: flex;
-  justify-content: center; /* centre horizontalement */
-  margin-top: 1rem;       /* optionnel, espace au-dessus */
+  justify-content: center;
+  margin-top: 1rem;
 }
 .error-list{
   margin-top: -25px;
@@ -64,20 +64,6 @@ mat-card-title{
   position: relative;
 }
 
-// .loading {
-//   position: absolute;
-//   top: -10px;
-//   bottom: -10px;
-//   left: -10px;
-//   right: -10px;
-//   height: inherit;
-//   z-index: 10;
-//   backdrop-filter: blur(5px);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-top: 1rem;
-// }
 
 a{
   text-decoration: none;
@@ -86,4 +72,20 @@ a{
   align-items: right;
   display: flex;
   justify-content: right;
+}
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-lign,
+  .form-lign1 {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .main-form {
+    padding: 10px;
+    margin: 10px;
+  }
 }

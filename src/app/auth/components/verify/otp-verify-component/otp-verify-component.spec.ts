@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { OtpVerifyComponent } from './otp-verify-component';
@@ -18,6 +19,7 @@ describe('OtpVerifyComponent', () => {
     verifyService = jasmine.createSpyObj('VerifyService', ['sendOtp', 'verifyOtp']);
     translateService = jasmine.createSpyObj('TranslateService', ['instant']);
     router = jasmine.createSpyObj('Router', ['navigateByUrl']);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     translateService.instant.and.callFake((key: string, params?: any) => key + (params?.remaining ?? ''));
 
     await TestBed.configureTestingModule({
@@ -89,7 +91,7 @@ describe('OtpVerifyComponent', () => {
   }));
 
   it('should increment attempts on wrong OTP', fakeAsync(() => {
-    verifyService.verifyOtp.and.returnValue(of({ status: 'fail' }));
+    verifyService.verifyOtp.and.returnValue(of({ status: 'failed' }));
 
     component.onOtpCompleted('000000');
     tick(1000);
@@ -101,7 +103,7 @@ describe('OtpVerifyComponent', () => {
   }));
 
   it('should block after max attempts', fakeAsync(() => {
-    verifyService.verifyOtp.and.returnValue(of({ status: 'fail' }));
+    verifyService.verifyOtp.and.returnValue(of({ status: 'failed' }));
     component.attempts = 2; // maxAttempts = 3
 
     component.onOtpCompleted('000000');

@@ -5,6 +5,7 @@ li{
   display: inline-block;
 }
 
+
 a{
   color: white;
   text-decoration: none;
@@ -27,8 +28,11 @@ mat-form-field{
 .toolbar {
   display: flex;
   align-items: center;
+  width: 100%;
 
-  .nav-links {
+
+}
+ .nav-links {
     display: flex;
     list-style: none;
     margin-left: 1rem;
@@ -38,10 +42,38 @@ mat-form-field{
   }
 
   .spacer {
-    flex: 1 1 auto; // pousse les éléments suivants à droite
+    flex: 1 1 auto;
   }
 
   .language-select {
-    width: 150px; // largeur du select
+    width: auto;
+  }
+  mat-select{
+    color: white;
+  }
+  mat-label{
+    color: white;
+  }
+@media (max-width: 768px) {
+  .toolbar {
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    margin-left: -20px;
+    margin-right: -10px;
+
+    .nav-links {
+      margin: 10px 0;
+      margin-right: -10px;
+      width: 100%;
+
+      li {
+        margin: 0.5rem 0;
+      }
+    }
+
+    .language-select {
+      width: 100%;
+    }
   }
 }

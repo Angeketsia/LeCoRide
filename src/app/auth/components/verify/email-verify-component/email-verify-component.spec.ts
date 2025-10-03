@@ -41,7 +41,7 @@ describe('EmailVerifyComponent', () => {
     component = fixture.componentInstance;
 
     // mock cooldown timer
-    component.cooldownTimer = { duration: 0, startTimer: jasmine.createSpy('startTimer') } as any;
+    component.cooldownTimer = { duration: 0, startTimer: jasmine.createSpy('startTimer') } as never;
 
     fixture.detectChanges();
   });

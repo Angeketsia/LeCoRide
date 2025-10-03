@@ -17,7 +17,7 @@
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "warn",
-        "@typescript-eslint/no-explicit-any": "off",
+        // "@typescript-eslint/no-explicit-any": "off",
         "@angular-eslint/component-class-suffix": ["error", { "suffixes": ["Component"] }],
         "@angular-eslint/directive-class-suffix": ["error", { "suffixes": ["Directive"] }],
         "@angular-eslint/prefer-standalone": "off",

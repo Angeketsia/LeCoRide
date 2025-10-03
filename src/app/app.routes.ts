@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { RegisterFormComponent } from './auth/components/register-form-component/register-form-component';
+import { LandingPageComponent } from './core/components/landing-page-component/landing-page-component';
 
 export const routes: Routes = [
   {
@@ -8,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: RegisterFormComponent
+    component: LandingPageComponent
   }
 
 ];

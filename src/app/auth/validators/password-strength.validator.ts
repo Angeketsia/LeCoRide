@@ -6,6 +6,7 @@ export function passwordStrengthValidator(control: AbstractControl): ValidationE
 
   if (!value) return null;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const errors: any = {};
 
   if (value.length < 8) {

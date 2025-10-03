@@ -16,7 +16,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get('/protected').subscribe({
-      next: (res: any) => this.data = res.success ? 'success' : 'failed',
+      next: (res: unknown) => {
+        if (typeof res === 'object' && res !== null && 'success' in res) {
+          this.data = (res as { success: boolean }).success ? 'success' : 'failed';
+        }
+      },
       error: (err) => this.data = err ? 'failed' : 'failed'
     });
   }

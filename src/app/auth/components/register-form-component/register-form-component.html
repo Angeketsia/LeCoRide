@@ -2,8 +2,7 @@
   <mat-card-title>{{ 'FORM.TITLE' | translate | uppercase }}</mat-card-title>
   <mat-divider></mat-divider>
 
-  <!-- Nom / Prénom -->
-  <div class="form-row">
+  <div class="form-row" fxLayout="row wrap" fxLayoutGap="16">
     <mat-form-field appearance="fill" class="form-lign1">
       <mat-label>{{ 'FORM.FIELDS.LAST_NAME' | translate }} </mat-label>
       <input matInput formControlName="last_name"
@@ -27,14 +26,12 @@
     </mat-form-field>
   </div>
 
-  <!-- Contact preference -->
   <mat-radio-group formControlName="contact_preference" data-cy="register-preference" aria-label="{{ 'FORM.FIELDS.CONTACT_PREFERENCE' | translate }}">
       <span>{{ 'FORM.FIELDS.CONTACT_PREFERENCE' | translate }}</span>
       <mat-radio-button value="email" data-cy="pref-email">{{ 'FORM.FIELDS.EMAIL' | translate }}</mat-radio-button>
       <mat-radio-button value="phone" data-cy="pref-phone">{{ 'FORM.FIELDS.PHONE' | translate }}</mat-radio-button>
     </mat-radio-group>
 
-  <!-- Email / Phone -->
   <mat-form-field *ngIf="mainForm.get('contact_preference')?.value === 'email'" appearance="fill">
     <mat-label>{{ 'FORM.FIELDS.EMAIL' | translate }} </mat-label>
     <input matInput formControlName="email"
@@ -59,7 +56,6 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- Password -->
   <mat-form-field appearance="fill">
     <mat-label>{{ 'FORM.FIELDS.PASSWORD' | translate }} </mat-label>
     <input matInput type="password" formControlName="password"
@@ -86,7 +82,6 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- Consent -->
   <mat-checkbox formControlName="consent"
                 aria-checked="false"
                 aria-required="true"
@@ -97,7 +92,6 @@
     {{ getFormControlErrorText(mainForm.get('consent')!) }}
   </mat-error>
 
-  <!-- Actions -->
   <mat-card-actions class="actions-center">
     <button mat-flat-button color="primary"
         (click)="onSubmitForm()" data-cy="register-submit"
@@ -122,6 +116,5 @@
     </a>
   </div>
 </div>
-  <!-- Spinner -->
   <mat-spinner class="loading" *ngIf="loading" role="status" aria-live="polite" mode="indeterminate"></mat-spinner>
 </mat-card>
